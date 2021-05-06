@@ -23,6 +23,7 @@ public class CreateAnExchange {
         Exchange exchange = new Exchange();
         exchange.setMaker(creator);
         exchange.setMakerOffer(product);
+        exchange.setState("open");
         exchanges.save(exchange);
         return exchange;
     }
