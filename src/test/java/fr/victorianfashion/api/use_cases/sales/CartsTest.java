@@ -18,7 +18,7 @@ public class CartsTest {
   }
 
   @Test
-  void should_find_all_product_in_cart() {
+  void find_all_items_in_cart() {
     Assertions.assertThat(carts.items()).isNotNull();
   }
 
@@ -37,8 +37,29 @@ public class CartsTest {
   }
 
   @Test
+  void item_is_added_To_Cart_By_ID() throws InvalidException {
+    Cart cartItem = new Cart(
+        new Product(
+            "product1",
+            "product 1 description",
+            new Price(new BigDecimal(132.34)),
+            "available",
+            1011L),
+        "item1",
+        2);
+    Assertions.assertThat(carts.addItemsToCartByPID(cartItem.getProductId().getId())).isTrue();
+  }
+
+
+  @Test
+  void get_Items_By_ItemsId() {
+    Assertions.assertThat(carts.getItemsByItemsId(1000L).getProductId().getId()).isNotNull();
+  }
+
+
+  @Test
   void item_is_removed() {
-    Assertions.assertThat(carts.removeProductByPID(1001L)).isFalse();
+    Assertions.assertThat(carts.removeItemsByPID(1001L)).isFalse();
   }
 
   @Test

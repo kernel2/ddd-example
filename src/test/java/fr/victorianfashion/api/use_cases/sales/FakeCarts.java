@@ -94,22 +94,14 @@ public class FakeCarts implements Carts {
 
 
   @Override
-  public void addProductToCartByPID(Long pid) {
-    Cart productToCart = getProductByProductID(pid);
-    addToCart(productToCart);
+  public boolean addItemsToCartByPID(Long pid) {
+    Cart productToCart = getItemsByItemsId(pid);
+    return addToCart(productToCart);
   }
 
   @Override
-  public Cart getProductByProductID(Long pid) {
-    Cart productCart = null;
-    //cartList.stream().filter(c -> c.getProductId().equals(pid));
-    for (Cart prod: cartList) {
-      if (prod.getProductId().equals(pid)) {
-        productCart = prod;
-        break;
-      }
-    }
-    return productCart;
+  public Cart getItemsByItemsId(Long id) {
+    return cartList.stream().filter(c -> c.getProductId().getId().equals(id)).findAny().orElse(null);
   }
 
   @Override
@@ -118,8 +110,8 @@ public class FakeCarts implements Carts {
   }
 
   @Override
-  public boolean removeProductByPID(Long productId) {
-    Cart prod = getProductByProductID(productId);
+  public boolean removeItemsByPID(Long productId) {
+    Cart prod = getItemsByItemsId(productId);
     return cartList.remove(prod);
   }
 

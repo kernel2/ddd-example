@@ -7,13 +7,13 @@ public interface Carts {
 
   Cart items();
 
-  void addProductToCartByPID(Long pid);
+  boolean addItemsToCartByPID(Long id);
 
-  Cart getProductByProductID(Long pid);
+  Cart getItemsByItemsId(Long id);
 
   boolean addToCart(Cart cartItems);
 
-  boolean removeProductByPID(Long productId);
+  boolean removeItemsByPID(Long productId);
 
   boolean cartEmpty();
 }
