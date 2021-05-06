@@ -10,32 +10,45 @@ public class Exchange {
     private double id;
     private user Maker;
     @Nullable
-    private user Feeder;
-    private List<Product> makerOffer;
-    private List<Product> feederOffer;
+    private List<Proposal> proposals;
+    @Nullable
+    private Proposal approvedProposal;
+    private Product makerOffer;
+    private String state; // valid values : "open", "reserved", "shipped", "closed"
 
-    public Exchange(user maker, @Nullable user feeder, List<Product> makerOffer, List<Product> feederOffer) {
+
+    public Exchange(user maker, Product makerOffer, String state) {
         Maker = maker;
-        Feeder = feeder;
         this.makerOffer = makerOffer;
-        this.feederOffer = feederOffer;
+        this.state = state;
     }
 
-    public List<Product> getMakerOffer() {
+    public Exchange(){}
+
+    public String getState() {
+        return state;
+    }
+
+    public boolean isOpen(){
+        return this.state == "open";
+    }
+
+    public void addProposal(Proposal proposal){
+        this.proposals.add(proposal);
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Product getMakerOffer() {
         return makerOffer;
     }
 
-    public void setMakerOffer(List<Product> makerOffer) {
+    public void setMakerOffer(Product makerOffer) {
         this.makerOffer = makerOffer;
     }
 
-    public List<Product> getFeederOffer() {
-        return feederOffer;
-    }
-
-    public void setFeederOffer(List<Product> feederOffer) {
-        this.feederOffer = feederOffer;
-    }
 
     public double getId() {
         return id;
@@ -53,12 +66,4 @@ public class Exchange {
         Maker = maker;
     }
 
-    @Nullable
-    public user getFeeder() {
-        return Feeder;
-    }
-
-    public void setFeeder(@Nullable user feeder) {
-        Feeder = feeder;
-    }
 }
