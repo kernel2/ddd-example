@@ -3,12 +3,13 @@ package fr.victorianfashion.api.use_cases.product;
 import fr.victorianfashion.api.domain.product.InvalidException;
 import fr.victorianfashion.api.domain.product.Price;
 import fr.victorianfashion.api.domain.product.Product;
+import fr.victorianfashion.api.use_cases.ProductsRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class FakeProduct implements Products {
+public class FakeProduct implements ProductsRepository {
   List<Product> productList = new ArrayList<>();
 
   public FakeProduct() throws InvalidException {

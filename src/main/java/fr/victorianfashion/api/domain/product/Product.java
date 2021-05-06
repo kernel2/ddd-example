@@ -3,6 +3,7 @@ package fr.victorianfashion.api.domain.product;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+// Product root
 public class Product {
   private final String name;
   private final String description;
