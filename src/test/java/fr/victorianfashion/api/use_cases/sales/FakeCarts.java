@@ -4,18 +4,25 @@ import fr.victorianfashion.api.domain.product.InvalidException;
 import fr.victorianfashion.api.domain.product.Price;
 import fr.victorianfashion.api.domain.product.Product;
 import fr.victorianfashion.api.domain.sales.Cart;
+import fr.victorianfashion.api.use_cases.CartsRepository;
+import fr.victorianfashion.api.use_cases.ProductsRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FakeCarts implements Carts {
+public class FakeCarts implements CartsRepository {
 
+  private final ProductsRepository productsRepository;
+  private final CartsRepository cartsRepository;
   private final Map<String, List<Cart>> items;
   List<Cart> cartList = new ArrayList<>();
 
-  public FakeCarts() throws InvalidException {
+  public FakeCarts(ProductsRepository productsRepository,
+      CartsRepository cartsRepository) throws InvalidException {
+    this.productsRepository = productsRepository;
+    this.cartsRepository = cartsRepository;
     items = new HashMap<>();
 
     cartList.add(
@@ -83,40 +90,21 @@ public class FakeCarts implements Carts {
   }
 
   @Override
-  public Cart id() {
-    return id();
+  public Cart save(Cart cart) {
+      //Cart cartSave = cartList.add(cart);
+      return cartsRepository.save(cart);
   }
 
   @Override
-  public Cart items() {
-    return cartList.stream().findAny().orElse(null);
-  }
-
-
-  @Override
-  public boolean addItemsToCartByPID(Long pid) {
-    Cart productToCart = getItemsByItemsId(pid);
-    return addToCart(productToCart);
+  public List<Cart> findAll() {
+    return items.values().stream().findAny().orElse(null);
   }
 
   @Override
-  public Cart getItemsByItemsId(Long id) {
-    return cartList.stream().filter(c -> c.getProductId().getId().equals(id)).findAny().orElse(null);
+  public Cart findProductByIdToCart(Long id) {
+    Product productId = productsRepository.findProductById(id);
+    Cart cart = cartList.stream().filter(pid -> pid.getProductId().equals(productId)).findAny().orElse(null);
+    return cart;
   }
 
-  @Override
-  public boolean addToCart(Cart cartItems) {
-    return cartList.add(cartItems);
-  }
-
-  @Override
-  public boolean removeItemsByPID(Long productId) {
-    Cart prod = getItemsByItemsId(productId);
-    return cartList.remove(prod);
-  }
-
-  @Override
-  public boolean cartEmpty() {
-    return cartList.isEmpty();
-  }
 }

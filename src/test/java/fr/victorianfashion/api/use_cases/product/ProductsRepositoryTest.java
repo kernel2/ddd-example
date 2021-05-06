@@ -1,13 +1,14 @@
 package fr.victorianfashion.api.use_cases.product;
 
 import fr.victorianfashion.api.domain.product.InvalidException;
+import fr.victorianfashion.api.use_cases.ProductsRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ProductsTest {
+public class ProductsRepositoryTest {
 
-  private Products products;
+  private ProductsRepository products;
 
   @BeforeEach
   public void init() throws InvalidException {
