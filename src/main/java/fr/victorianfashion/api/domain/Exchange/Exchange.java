@@ -33,6 +33,24 @@ public class Exchange {
         return this.state == "open";
     }
 
+    @Nullable
+    public List<Proposal> getProposals() {
+        return proposals;
+    }
+
+    public void setProposals(@Nullable List<Proposal> proposals) {
+        this.proposals = proposals;
+    }
+
+    @Nullable
+    public Proposal getApprovedProposal() {
+        return approvedProposal;
+    }
+
+    public void setApprovedProposal(@Nullable Proposal approvedProposal) {
+        this.approvedProposal = approvedProposal;
+    }
+
     public void addProposal(Proposal proposal){
         this.proposals.add(proposal);
     }
