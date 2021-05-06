@@ -3,6 +3,7 @@ package fr.victorianfashion.api.domain;
 import java.util.Objects;
 
 @EntityUser
+// user root
 public class user {
 
   private final String username;
@@ -92,14 +93,27 @@ public class user {
 
   @Override
   public String toString() {
-    return "user{" +
-        "username='" + username + '\'' +
-        ", password='" + password + '\'' +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", email='" + email + '\'' +
-        ", phone='" + phone + '\'' +
-        ", id=" + id +
-        '}';
+    return "user{"
+        + "username='"
+        + username
+        + '\''
+        + ", password='"
+        + password
+        + '\''
+        + ", firstName='"
+        + firstName
+        + '\''
+        + ", lastName='"
+        + lastName
+        + '\''
+        + ", email='"
+        + email
+        + '\''
+        + ", phone='"
+        + phone
+        + '\''
+        + ", id="
+        + id
+        + '}';
   }
 }
