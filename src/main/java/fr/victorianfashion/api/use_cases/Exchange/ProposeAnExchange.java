@@ -2,18 +2,18 @@ package fr.victorianfashion.api.use_cases.Exchange;
 
 import fr.victorianfashion.api.domain.Exchange.Exchange;
 import fr.victorianfashion.api.domain.Exchange.Proposal;
+import fr.victorianfashion.api.domain.product.Product;
 import fr.victorianfashion.api.use_cases.Proposal.ProposalRepository;
 import fr.victorianfashion.api.use_cases.User.UserRepository;
-import fr.victorianfashion.api.use_cases.product.Products;
 
 public class ProposeAnExchange {
-    private final Products products;
+    private final Product product;
     private final UserRepository users;
     private final ExchangeRepository exchanges;
     public final ProposalRepository proposals;
 
-    public ProposeAnExchange(ProposalRepository proposals ,Products products, UserRepository users, ExchangeRepository exchanges) {
-        this.products = products;
+    public ProposeAnExchange(ProposalRepository proposals ,Product product, UserRepository users, ExchangeRepository exchanges) {
+        this.product = product;
         this.users = users;
         this.exchanges = exchanges;
         this.proposals = proposals;

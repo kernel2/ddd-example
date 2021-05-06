@@ -84,4 +84,7 @@ public class Exchange {
         Maker = maker;
     }
 
+    public void setApprovedProposal(Proposal proposal) {
+        this.approvedProposal = approvedProposal;
+    }
 }

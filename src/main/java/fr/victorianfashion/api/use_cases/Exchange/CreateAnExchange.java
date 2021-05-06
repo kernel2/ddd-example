@@ -3,22 +3,25 @@ package fr.victorianfashion.api.use_cases.Exchange;
 import fr.victorianfashion.api.domain.Exchange.Exchange;
 import fr.victorianfashion.api.domain.product.Product;
 import fr.victorianfashion.api.domain.user;
+import fr.victorianfashion.api.use_cases.ProductsRepository;
 import fr.victorianfashion.api.use_cases.User.UserRepository;
-import fr.victorianfashion.api.use_cases.product.Products;
 
 public class CreateAnExchange {
-    private final Products products;
+    private final Product product;
     private final UserRepository users;
     private final ExchangeRepository exchanges;
+    private final ProductsRepository productsRepository;
 
-    public CreateAnExchange(ExchangeRepository exchanges,Products products, UserRepository users) {
-        this.products = products;
+    public CreateAnExchange(ExchangeRepository exchanges, Product product, UserRepository users,
+        ProductsRepository productsRepository) {
+        this.product = product;
         this.users = users;
         this.exchanges = exchanges;
+        this.productsRepository = productsRepository;
     }
 
     public Exchange create(Long userID, Long productID){
-        Product product = products.findProductById(productID);
+        Product product = productsRepository.findProductById(productID);
         user creator = users.findById(userID);
         Exchange exchange = new Exchange();
         exchange.setMaker(creator);

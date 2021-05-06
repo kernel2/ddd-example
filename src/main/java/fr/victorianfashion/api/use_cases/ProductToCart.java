@@ -23,9 +23,16 @@ public class ProductToCart {
   public Cart addItemsToCartById(Long pid) {
     Product product = products.findProductById(pid);
     Cart cart = carts.findProductByIdToCart(product.getId());
+
+    extractedExecute(pid, product, cart);
+
+    carts.save(cart);
+    return cart;
+  }
+
+  public Cart extractedExecute(Long pid, Product product, Cart cart) {
     if (product.getId().equals(pid)){
-      cartList.add(cart);
-      carts.save(cart);
+       cartList.add(cart);
     }else
     {
       new RessourceNotFoundException("not found item");
