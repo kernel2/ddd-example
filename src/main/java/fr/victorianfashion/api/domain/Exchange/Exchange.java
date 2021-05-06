@@ -47,10 +47,6 @@ public class Exchange {
         return approvedProposal;
     }
 
-    public void setApprovedProposal(@Nullable Proposal approvedProposal) {
-        this.approvedProposal = approvedProposal;
-    }
-
     public void addProposal(Proposal proposal){
         this.proposals.add(proposal);
     }
