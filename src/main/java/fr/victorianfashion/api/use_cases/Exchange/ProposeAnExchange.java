@@ -22,10 +22,11 @@ public class ProposeAnExchange {
     public Exchange ProposeExchange(Long exchangeID, Long proposalID) throws Exception {
         Exchange exchange = exchanges.findExchangeByID(exchangeID);
         Proposal proposal = proposals.findProposalById(proposalID);
-        if(exchange.isOpen()){
+        if(!exchange.isOpen()){
             throw new Exception("Exchange not available");
         }
         exchange.addProposal(proposal);
+        exchanges.save(exchange);
         return exchange;
     }
 
