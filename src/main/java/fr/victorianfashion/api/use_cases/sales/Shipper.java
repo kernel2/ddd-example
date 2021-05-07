@@ -1,9 +1,9 @@
 package fr.victorianfashion.api.use_cases.sales;
 
-import fr.victorianfashion.api.domain.sales.Address;
-import fr.victorianfashion.api.domain.sales.Order;
-import fr.victorianfashion.api.domain.sales.Product;
-import fr.victorianfashion.api.domain.sales.ShippingInformation;
+import fr.victorianfashion.api.domain.sales.shipping.Address;
+import fr.victorianfashion.api.domain.sales.product.Order;
+import fr.victorianfashion.api.domain.sales.product.Product;
+import fr.victorianfashion.api.domain.sales.shipping.ShippingInformation;
 
 public class Shipper {
 
@@ -17,7 +17,7 @@ public class Shipper {
 
   private void shipInternal(Product product, Address address, Double weightInGrams) {
     // does some stuff with weight, decides packet type etc
-    System.out.println("Shipped =  " + product.getName() + " with weight " + weightInGrams);
+    System.out.println("Product Name: " + product.getName() + "Address: "+ address + " with weight: " + weightInGrams);
   }
 
 }

@@ -1,6 +1,6 @@
 package fr.victorianfashion.api.domain.sales;
 
-import fr.victorianfashion.api.use_cases.sales.DomainEvent;
+import fr.victorianfashion.api.domain.sales.product.Price;
 
 public class ItemAddedToCartEvent implements DomainEvent {
   private String name;

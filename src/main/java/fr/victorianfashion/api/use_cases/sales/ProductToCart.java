@@ -1,18 +1,20 @@
 package fr.victorianfashion.api.use_cases.sales;
 
-import fr.victorianfashion.api.domain.sales.CartItem;
-import fr.victorianfashion.api.domain.sales.Item;
+import fr.victorianfashion.api.domain.sales.cart.CartCheckedOut;
+import fr.victorianfashion.api.domain.sales.cart.CartItem;
+import fr.victorianfashion.api.domain.sales.DomainEvent;
+import fr.victorianfashion.api.domain.sales.product.Item;
 import fr.victorianfashion.api.domain.sales.ItemAddedToCartEvent;
 import fr.victorianfashion.api.domain.sales.ItemRemovedFromCartEvent;
-import fr.victorianfashion.api.domain.sales.Product;
+import fr.victorianfashion.api.domain.sales.product.Product;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductToCart {
 
-  private List<DomainEvent> events = new ArrayList<>();
-  private List<Item> items = new ArrayList<>();
+  private final List<DomainEvent> events = new ArrayList<>();
+  private final List<Item> items = new ArrayList<>();
 
   private Status status;
 
@@ -22,16 +24,14 @@ public class ProductToCart {
             item.getProduct().getName(), item.getProduct().getPrice(), item.getQuantity());
     apply(itemAddedEvent);
     return item;
-    //System.out.println("item added to chart = " + item);
   }
 
-  public Item removeItem(Item item) {
+  public String removeItem(Item item) {
 
     ItemRemovedFromCartEvent itemRemovedFromCartEvent =
         new ItemRemovedFromCartEvent(item.getProduct().getName());
     apply(itemRemovedFromCartEvent);
-    return item;
-    //System.out.println("Cart now has " + items);
+    return "item has been removed";
   }
 
   private void apply(ItemAddedToCartEvent event) {
@@ -46,7 +46,7 @@ public class ProductToCart {
         this.items.stream()
             .filter(item -> item.getProduct().getName().equals(event.getName()))
             .findFirst()
-            .get());
+            .orElse(null));
   }
 
   public void checkOut() {
@@ -63,9 +63,15 @@ public class ProductToCart {
             .collect(Collectors.toList());
 
     events.add(new CartCheckedOut(cartItems));
+    //System.out.println("checkOut of cartItems is ==> "+cartItems);
   }
 
   public List<Item> allItems() {
     return items;
   }
+}
+
+enum Status {
+  CHECKEDOUT,
+  AVAILABLE
 }

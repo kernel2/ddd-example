@@ -1,7 +1,5 @@
 package fr.victorianfashion.api.domain.sales;
 
-import fr.victorianfashion.api.use_cases.sales.DomainEvent;
-
 public class ItemRemovedFromCartEvent implements DomainEvent {
   private String name;
 

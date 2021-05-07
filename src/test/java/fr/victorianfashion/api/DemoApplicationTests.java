@@ -1,14 +1,15 @@
 package fr.victorianfashion.api;
 
-import fr.victorianfashion.api.domain.sales.Address;
-import fr.victorianfashion.api.domain.sales.Cart;
-import fr.victorianfashion.api.domain.sales.Item;
-import fr.victorianfashion.api.domain.sales.Order;
-import fr.victorianfashion.api.domain.sales.Price;
-import fr.victorianfashion.api.domain.sales.Product;
-import fr.victorianfashion.api.domain.sales.ShippingInformation;
-import fr.victorianfashion.api.use_cases.sales.OrderFactory;
+import fr.victorianfashion.api.domain.sales.shipping.Address;
+import fr.victorianfashion.api.domain.sales.cart.Cart;
+import fr.victorianfashion.api.domain.sales.product.Item;
+import fr.victorianfashion.api.domain.sales.product.Order;
+import fr.victorianfashion.api.domain.sales.product.Price;
+import fr.victorianfashion.api.domain.sales.product.Product;
+import fr.victorianfashion.api.domain.sales.shipping.ShippingInformation;
+import fr.victorianfashion.api.use_cases.sales.CreateOrder;
 import fr.victorianfashion.api.use_cases.sales.ProductToCart;
+import fr.victorianfashion.api.use_cases.sales.Shipper;
 import java.math.BigDecimal;
 import java.util.Currency;
 import org.junit.jupiter.api.Test;
@@ -21,23 +22,24 @@ class DemoApplicationTests {
   void contextLoads() {
 
     ProductToCart productToCart = new ProductToCart();
-    Cart cart = new Cart();
 
-    Product ipadPro = new Product("Ipad Pro", new Price(new BigDecimal(10000), Currency.getInstance("INR")), 20.0);
-    Item ipadProItem = new Item(ipadPro, 1);
-    productToCart.addItem(ipadProItem);
+    Product dress1 = new Product("PROENZA SCHOULER dress", new Price(new BigDecimal(10000), Currency.getInstance("EUR")), 20.0);
+    Item dress1Item = new Item(dress1, 1);
+    productToCart.addItem(dress1Item);
 
-    Product inkPen = new Product("Hero Ink Pen", new Price(new BigDecimal(120), Currency.getInstance("INR")), 20.0);
-    Item inkPenItem = new Item(inkPen, 1);
-    productToCart.addItem(inkPenItem);
+    Product dress2 = new Product("ETRO dress", new Price(new BigDecimal(120), Currency.getInstance("EUR")), 20.0);
+    Item dress2Item = new Item(dress2, 1);
+    productToCart.addItem(dress2Item);
 
-    Product bat = new Product("GM Cricket Bat", new Price(new BigDecimal(3000), Currency.getInstance("INR")), 20.0);
-    Item batItem = new Item(bat, 2);
-    productToCart.addItem(batItem);
+    Product dress3 = new Product("ZIMMERMANN dress", new Price(new BigDecimal(1100), Currency.getInstance("EUR")), 20.0);
+    Item dress3Item = new Item(dress3, 2);
+    productToCart.addItem(dress3Item);
 
-    Product ipadProToBeRemoved = new Product("Ipad Pro", new Price(new BigDecimal(10000), Currency.getInstance("INR")), 20.0);
-    Item ipadProToBeRemovedItem = new Item(ipadProToBeRemoved, 1);
-    productToCart.removeItem(ipadProToBeRemovedItem);
+    Product dressToBeRemoved = new Product("Stretch-linen shirt dress", new Price(new BigDecimal(10000), Currency.getInstance("EUR")), 20.0);
+    Item dressToBeRemovedItem = new Item(dressToBeRemoved, 1);
+    var result = productToCart.removeItem(dressToBeRemovedItem);
+
+    System.out.println("Cart now has " + result);
 
     //Use case 6
     Cart cart1 = new Cart();
@@ -48,21 +50,21 @@ class DemoApplicationTests {
 
     System.out.println("cart1 and cart 2 are different? = " + !cart1.sameIdentityAs(cart2));
 
-    Product inkPen1 = new Product("Hero Ink Pen", new Price(new BigDecimal(10000), Currency.getInstance("INR")), 20.0);
-    Product inkPen2 = new Product("Hero Ink Pen", new Price(new BigDecimal(10000), Currency.getInstance("INR")), 20.0);
+    Product product1 = new Product("Stretch-linen shirt dress", new Price(new BigDecimal(10000), Currency.getInstance("EUR")), 20.0);
+    Product product2 = new Product("ZIMMERMANN dress", new Price(new BigDecimal(3000), Currency.getInstance("EUR")), 20.0);
 
-    System.out.println("inkPen1 can be replaced by inkPen2 = "+ inkPen1.sameValueAs(inkPen2) );
+    System.out.println("product1 can be replaced by product2 = "+ product1.sameValueAs(product2) );
 
     productToCart.checkOut();
 
-    ShippingInformation shippingInformation = new ShippingInformation(new Address("line1", "Pune"));
-    Order order = OrderFactory.create(productToCart, shippingInformation);
+    ShippingInformation shippingInformation = new ShippingInformation(new Address("129 Rue de Grenelle, 75007 Paris", "paris"));
+    Order order = CreateOrder.create(productToCart, shippingInformation);
 
     System.out.println("order has these products = " + order.getProducts());
 
-    order.ship();
+    //order.ship();
 
-    // Shipper.ship(new ShippingInformation(new Address("line1", "Pune")), order);
-
+    Shipper shipper = new Shipper();
+    shipper.ship(shippingInformation, order);
   }
 }
