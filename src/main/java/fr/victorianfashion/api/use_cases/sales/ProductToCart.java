@@ -5,9 +5,13 @@ import fr.victorianfashion.api.domain.sales.ItemAddedToCartEvent;
 import fr.victorianfashion.api.domain.sales.ItemRemovedFromCartEvent;
 import fr.victorianfashion.api.domain.sales.cart.CartCheckedOut;
 import fr.victorianfashion.api.domain.sales.cart.CartItem;
-import fr.victorianfashion.api.domain.sales.product.Item;
+import fr.victorianfashion.api.domain.sales.cart.Item;
+import fr.victorianfashion.api.domain.sales.product.Price;
 import fr.victorianfashion.api.domain.sales.product.Product;
+import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,15 +24,24 @@ public class ProductToCart {
 
   private final List<DomainEvent> events = new ArrayList<>();
   private final List<Item> items = new ArrayList<>();
+  private Instant lastModifiedTime;
+  private int cartMaxItemsLimit = 10;
 
   private Status status;
 
-  public Item addItem(Item item) {
-    ItemAddedToCartEvent itemAddedEvent =
-        new ItemAddedToCartEvent(
-            item.getProduct().getName(), item.getProduct().getPrice(), item.getQuantity());
-    apply(itemAddedEvent);
-    return item;
+  public void addItem(Item item) {
+    if (validateMaxItemsLimit(1) && isQtyWithinAllowedLimit(item)) {
+      this.items.add(item);
+      calculateCartPrice();
+      updateLastModifiedTime();
+
+      ItemAddedToCartEvent itemAddedEvent =
+          new ItemAddedToCartEvent(
+              item.getProduct().getName(), item.getProduct().getPrice(), item.getQuantity());
+      apply(itemAddedEvent);
+    } else {
+      new RessourceNotFoundException("Panier dépasser le quota");
+    }
   }
 
   public String removeItem(Item item) {
@@ -73,5 +86,33 @@ public class ProductToCart {
 
   public List<Item> allItems() {
     return items;
+  }
+
+  public boolean isBasketEmpty() {
+    return items.size() <= 0;
+  }
+
+  public int getTotalItemsInCart() {
+    return items.size();
+  }
+
+  private boolean validateMaxItemsLimit(int itemCountToAdd) {
+    // Vérification que les invariants sont satisfaits. Le panier ne peut pas avoir plus de 10 ietms, le panier ne peut pas avoir 2qty par
+    // item.
+    return getTotalItemsInCart() + itemCountToAdd <= cartMaxItemsLimit ? false : true;
+  }
+
+  private boolean isQtyWithinAllowedLimit(Item cartItem) {
+    return cartItem.isQtyWithinAllowedLimit();
+  }
+
+  private Price calculateCartPrice() {
+    return items.stream()
+        .map(product -> product.getProduct().getPrice())
+        .reduce(new Price(BigDecimal.ZERO, Currency.getInstance("EURO")), (price1, price2) -> price1.add(price2));
+  }
+
+  private void updateLastModifiedTime() {
+    this.lastModifiedTime = Instant.now();
   }
 }

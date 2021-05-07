@@ -1,16 +1,23 @@
-package fr.victorianfashion.api.domain.sales.product;
+package fr.victorianfashion.api.domain.sales.cart;
 
+import fr.victorianfashion.api.domain.sales.product.Product;
 import java.util.Objects;
 
 public class Item {
 
   private Product product;
   private int quantity;
+  private CatalogItem catalogItem;
 
   public Item(Product product, int quantity) {
 
     this.product = product;
     this.quantity = quantity;
+  }
+
+  public boolean isQtyWithinAllowedLimit() {
+    return this.quantity <= catalogItem.getMaxAllowedPurchaseQty() ? true : false;
+    // cart can't have more than max qty defined at catalog level.
   }
 
   public Product getProduct() {

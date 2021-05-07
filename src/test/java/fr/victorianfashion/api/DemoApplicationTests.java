@@ -1,7 +1,7 @@
 package fr.victorianfashion.api;
 
 import fr.victorianfashion.api.domain.sales.cart.Cart;
-import fr.victorianfashion.api.domain.sales.product.Item;
+import fr.victorianfashion.api.domain.sales.cart.Item;
 import fr.victorianfashion.api.domain.sales.product.Order;
 import fr.victorianfashion.api.domain.sales.product.Price;
 import fr.victorianfashion.api.domain.sales.product.Product;

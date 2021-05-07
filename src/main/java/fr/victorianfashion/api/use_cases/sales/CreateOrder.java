@@ -1,6 +1,6 @@
 package fr.victorianfashion.api.use_cases.sales;
 
-import fr.victorianfashion.api.domain.sales.product.Item;
+import fr.victorianfashion.api.domain.sales.cart.Item;
 import fr.victorianfashion.api.domain.sales.product.Order;
 import fr.victorianfashion.api.domain.sales.product.Product;
 import fr.victorianfashion.api.domain.sales.shipping.ShippingInformation;
