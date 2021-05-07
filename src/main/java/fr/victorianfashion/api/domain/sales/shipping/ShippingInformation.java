@@ -32,8 +32,6 @@ public class ShippingInformation {
 
   @Override
   public String toString() {
-    return "ShippingInformation{" +
-        "address=" + address +
-        '}';
+    return "ShippingInformation{" + "address=" + address + '}';
   }
 }

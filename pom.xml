@@ -36,8 +36,8 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.javafaker</groupId>
       <artifactId>javafaker</artifactId>
+      <groupId>com.github.javafaker</groupId>
       <version>0.12</version>
     </dependency>
     <dependency>

@@ -1,15 +1,20 @@
 package fr.victorianfashion.api.use_cases.sales;
 
-import fr.victorianfashion.api.domain.sales.cart.CartCheckedOut;
-import fr.victorianfashion.api.domain.sales.cart.CartItem;
 import fr.victorianfashion.api.domain.sales.DomainEvent;
-import fr.victorianfashion.api.domain.sales.product.Item;
 import fr.victorianfashion.api.domain.sales.ItemAddedToCartEvent;
 import fr.victorianfashion.api.domain.sales.ItemRemovedFromCartEvent;
+import fr.victorianfashion.api.domain.sales.cart.CartCheckedOut;
+import fr.victorianfashion.api.domain.sales.cart.CartItem;
+import fr.victorianfashion.api.domain.sales.product.Item;
 import fr.victorianfashion.api.domain.sales.product.Product;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+enum Status {
+  CHECKEDOUT,
+  AVAILABLE
+}
 
 public class ProductToCart {
 
@@ -63,15 +68,10 @@ public class ProductToCart {
             .collect(Collectors.toList());
 
     events.add(new CartCheckedOut(cartItems));
-    //System.out.println("checkOut of cartItems is ==> "+cartItems);
+    // System.out.println("checkOut of cartItems is ==> "+cartItems);
   }
 
   public List<Item> allItems() {
     return items;
   }
-}
-
-enum Status {
-  CHECKEDOUT,
-  AVAILABLE
 }

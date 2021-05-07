@@ -22,10 +22,7 @@ public class Address {
 
   @Override
   public String toString() {
-    return "Address{" +
-        "line1='" + line1 + '\'' +
-        ", city='" + city + '\'' +
-        '}';
+    return "Address{" + "line1='" + line1 + '\'' + ", city='" + city + '\'' + '}';
   }
 
   @Override
@@ -37,8 +34,7 @@ public class Address {
       return false;
     }
     Address address = (Address) o;
-    return Objects.equals(line1, address.line1) && Objects
-        .equals(city, address.city);
+    return Objects.equals(line1, address.line1) && Objects.equals(city, address.city);
   }
 
   @Override

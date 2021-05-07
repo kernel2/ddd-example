@@ -1,6 +1,5 @@
 package fr.victorianfashion.api.domain.sales.product;
 
-import fr.victorianfashion.api.domain.sales.shipping.Address;
 import fr.victorianfashion.api.domain.sales.shipping.ShippingInformation;
 import java.util.List;
 

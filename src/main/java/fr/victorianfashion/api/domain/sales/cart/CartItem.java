@@ -14,8 +14,6 @@ public class CartItem {
     this.quantity = quantity;
   }
 
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -25,7 +23,8 @@ public class CartItem {
       return false;
     }
     CartItem cartItem = (CartItem) o;
-    return quantity == cartItem.quantity && Objects.equals(name, cartItem.name)
+    return quantity == cartItem.quantity
+        && Objects.equals(name, cartItem.name)
         && Objects.equals(price, cartItem.price);
   }
 

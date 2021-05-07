@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class CreateOrder {
 
-  public static Order create(ProductToCart cart, ShippingInformation shippingInformation) {
+  public Order create(ProductToCart cart, ShippingInformation shippingInformation) {
     List<Item> items = cart.allItems();
 
     List<Product> products =

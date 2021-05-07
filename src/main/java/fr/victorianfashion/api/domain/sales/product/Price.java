@@ -31,7 +31,7 @@ public class Price {
     return Objects.hash(value, currency);
   }
 
-//  public Price add(Price otherPrice) {
-//    return new Price(this.value.add(otherPrice.value), this.currency);
-//  }
+  //  public Price add(Price otherPrice) {
+  //    return new Price(this.value.add(otherPrice.value), this.currency);
+  //  }
 }
