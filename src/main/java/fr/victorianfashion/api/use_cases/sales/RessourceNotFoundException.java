@@ -1,4 +1,4 @@
-package fr.victorianfashion.api.use_cases;
+package fr.victorianfashion.api.use_cases.sales;
 
 public class RessourceNotFoundException extends Exception {
   public RessourceNotFoundException() {

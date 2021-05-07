@@ -1,61 +1,42 @@
 package fr.victorianfashion.api.domain.sales;
 
-import fr.victorianfashion.api.domain.product.Product;
 import java.util.Objects;
+import java.util.UUID;
 
-public class Cart {
+public class Cart implements Entity {
 
-  private final Product productId;
-  private final String title;
-  private final int quantity;
+  private UUID id;
 
-  public Cart(Product productId, String title, int quantity) {
-    this.productId = productId;
-    this.title = title;
-    this.quantity = quantity;
+  public Cart() {
+    this.id = UUID.randomUUID();
   }
 
-  public Product getProductId() {
-    return productId;
+  public UUID getId() {
+    return id;
   }
 
-  public String getTitle() {
-    return title;
-  }
-
-  public int getQuantity() {
-    return quantity;
+  public void setId(UUID id) {
+    this.id = id;
   }
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof Cart)) {
-      return false;
-    }
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
     Cart cart = (Cart) o;
-    return getQuantity() == cart.getQuantity()
-        && Objects.equals(getProductId(), cart.getProductId())
-        && Objects.equals(getTitle(), cart.getTitle());
+    return id.equals(cart.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getProductId(), getTitle(), getQuantity());
+    return Objects.hash(id);
   }
 
   @Override
-  public String toString() {
-    return "Cart{"
-        + "productId="
-        + productId
-        + ", title='"
-        + title
-        + '\''
-        + ", quantity="
-        + quantity
-        + '}';
+  public boolean sameIdentityAs(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Cart cart = (Cart) o;
+    return id.equals(cart.id);
   }
 }
