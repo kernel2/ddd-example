@@ -3,6 +3,7 @@ package fr.victorianfashion.api.domain.sales.cart;
 import java.util.Objects;
 import java.util.UUID;
 
+//Aggregate root
 public class Cart implements Entity {
 
   private final UUID id;

@@ -3,6 +3,7 @@ package fr.victorianfashion.api.domain.sales.cart;
 import fr.victorianfashion.api.domain.sales.product.Price;
 import java.util.Objects;
 
+// Entities
 public class CartItem {
   private final String name;
   private final Price price;

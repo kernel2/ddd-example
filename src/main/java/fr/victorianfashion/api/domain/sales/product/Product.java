@@ -1,7 +1,7 @@
 package fr.victorianfashion.api.domain.sales.product;
 
 import java.util.Objects;
-
+//Aggregate root
 public class Product implements ValueObject<Product> {
 
   private final String name;
