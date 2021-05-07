@@ -13,8 +13,20 @@ public class Order {
     this.shippingInformation = shippingInformation;
   }
 
+  private static void shipInternal(Product product, Address address, Double weightInGrams) {
+    // does some stuff with weight, decides packet type etc
+    System.out.println("Shipped =  " + product.getName() + " with weight " + weightInGrams);
+  }
+
   public List<Product> getProducts() {
     return products;
+  }
+
+  public void ship() {
+
+    products.forEach(
+        product ->
+            shipInternal(product, shippingInformation.getAddress(), product.getWeightInGms()));
   }
 
   @Override

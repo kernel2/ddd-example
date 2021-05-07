@@ -36,6 +36,11 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
+      <groupId>com.github.javafaker</groupId>
+      <artifactId>javafaker</artifactId>
+      <version>0.12</version>
+    </dependency>
+    <dependency>
       <artifactId>h2</artifactId>
       <groupId>com.h2database</groupId>
       <scope>runtime</scope>

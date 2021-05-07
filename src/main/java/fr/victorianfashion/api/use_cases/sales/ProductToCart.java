@@ -16,19 +16,21 @@ public class ProductToCart {
 
   private Status status;
 
-  public void addItem(Item item) {
+  public Item addItem(Item item) {
     ItemAddedToCartEvent itemAddedEvent =
         new ItemAddedToCartEvent(
             item.getProduct().getName(), item.getProduct().getPrice(), item.getQuantity());
     apply(itemAddedEvent);
+    return item;
     //System.out.println("item added to chart = " + item);
   }
 
-  public void removeItem(Item item) {
+  public Item removeItem(Item item) {
 
     ItemRemovedFromCartEvent itemRemovedFromCartEvent =
         new ItemRemovedFromCartEvent(item.getProduct().getName());
     apply(itemRemovedFromCartEvent);
+    return item;
     //System.out.println("Cart now has " + items);
   }
 

@@ -1,5 +1,6 @@
 package fr.victorianfashion.api.domain.sales;
 
+import fr.victorianfashion.api.use_cases.sales.ValueObject;
 import java.util.Objects;
 
 public class Product implements ValueObject<Product> {

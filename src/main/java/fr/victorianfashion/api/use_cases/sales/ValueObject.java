@@ -1,4 +1,4 @@
-package fr.victorianfashion.api.domain.sales;
+package fr.victorianfashion.api.use_cases.sales;
 
 // A value object DDD
 

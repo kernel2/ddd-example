@@ -1,11 +1,12 @@
 package fr.victorianfashion.api.domain.sales;
 
+import fr.victorianfashion.api.use_cases.sales.Entity;
 import java.util.Objects;
 import java.util.UUID;
 
 public class Cart implements Entity {
 
-  private UUID id;
+  private final UUID id;
 
   public Cart() {
     this.id = UUID.randomUUID();
@@ -13,10 +14,6 @@ public class Cart implements Entity {
 
   public UUID getId() {
     return id;
-  }
-
-  public void setId(UUID id) {
-    this.id = id;
   }
 
   @Override
