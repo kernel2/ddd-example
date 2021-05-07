@@ -11,9 +11,9 @@ import fr.victorianfashion.api.use_cases.CartsRepository;
 import fr.victorianfashion.api.use_cases.ProductToCart;
 import fr.victorianfashion.api.use_cases.ProductsRepository;
 import java.math.BigDecimal;
+import java.util.Currency;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -44,7 +44,7 @@ public class CartsTest {
       Product product = new Product(
           "product1",
           "product 1 description",
-          new Price(new BigDecimal(132.34)),
+          new Price(new BigDecimal(132.34),  Currency.getInstance("INR")),
           "available",
           1000L);
       Cart cart = new Cart(product, "item1", 2);

@@ -6,6 +6,7 @@ import fr.victorianfashion.api.domain.product.Product;
 import fr.victorianfashion.api.use_cases.ProductsRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,42 +19,42 @@ public class FakeProduct implements ProductsRepository {
         new Product(
             "product1",
             "product 1 description",
-            new Price(new BigDecimal(132.34)),
+            new Price(new BigDecimal(132.34),  Currency.getInstance("INR")),
             "available",
             1000L));
     productList.add(
         new Product(
             "product1",
             "product 1 description",
-            new Price(new BigDecimal(132.34)),
+            new Price(new BigDecimal(132.34),  Currency.getInstance("INR")),
             "available",
             1001L));
     productList.add(
         new Product(
             "product1",
             "product 1 description",
-            new Price(new BigDecimal(132.34)),
+            new Price(new BigDecimal(132.34),  Currency.getInstance("INR")),
             "available",
             1002L));
     productList.add(
         new Product(
             "product1",
             "product 1 description",
-            new Price(new BigDecimal(132.34)),
+            new Price(new BigDecimal(132.34),  Currency.getInstance("INR")),
             "available",
             1003L));
     productList.add(
         new Product(
             "product1",
             "product 1 description",
-            new Price(new BigDecimal(132.34)),
+            new Price(new BigDecimal(132.34),  Currency.getInstance("INR")),
             "available",
             1004L));
     productList.add(
         new Product(
             "product1",
             "product 1 description",
-            new Price(new BigDecimal(132.34)),
+            new Price(new BigDecimal(132.34),  Currency.getInstance("INR")),
             "available",
             1005L));
   }

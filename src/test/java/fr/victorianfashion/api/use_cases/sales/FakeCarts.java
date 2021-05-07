@@ -8,6 +8,7 @@ import fr.victorianfashion.api.use_cases.CartsRepository;
 import fr.victorianfashion.api.use_cases.ProductsRepository;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class FakeCarts implements CartsRepository {
             new Product(
                 "product1",
                 "product 1 description",
-                new Price(new BigDecimal(132.34)),
+                new Price(new BigDecimal(10000), Currency.getInstance("INR")),
                 "available",
                 1000L),
             "item1",
@@ -40,7 +41,7 @@ public class FakeCarts implements CartsRepository {
             new Product(
                 "product2",
                 "product 2 description",
-                new Price(new BigDecimal(103.34)),
+                new Price(new BigDecimal(103.34),  Currency.getInstance("INR")),
                 "available",
                 1001L),
             "item1",
@@ -50,7 +51,7 @@ public class FakeCarts implements CartsRepository {
             new Product(
                 "product3",
                 "product 3 description",
-                new Price(new BigDecimal(452.34)),
+                new Price(new BigDecimal(452.34),  Currency.getInstance("INR")),
                 "available",
                 1002L),
             "item1",
@@ -60,7 +61,7 @@ public class FakeCarts implements CartsRepository {
             new Product(
                 "product4",
                 "product 4 description",
-                new Price(new BigDecimal(1312.34)),
+                new Price(new BigDecimal(1312.34),  Currency.getInstance("INR")),
                 "available",
                 1003L),
             "item1",
@@ -70,7 +71,7 @@ public class FakeCarts implements CartsRepository {
             new Product(
                 "product5",
                 "product 5 description",
-                new Price(new BigDecimal(2142.34)),
+                new Price(new BigDecimal(2142.34),  Currency.getInstance("INR")),
                 "available",
                 1004L),
             "item1",
@@ -80,7 +81,7 @@ public class FakeCarts implements CartsRepository {
             new Product(
                 "product6",
                 "product 6 description",
-                new Price(new BigDecimal(1325.34)),
+                new Price(new BigDecimal(1325.34),  Currency.getInstance("INR")),
                 "available",
                 1005L),
             "item1",

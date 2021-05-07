@@ -1,6 +1,7 @@
 package fr.victorianfashion.api.domain.product;
 
 import java.math.BigDecimal;
+import java.util.Currency;
 import java.util.Objects;
 
 // Product root
@@ -14,7 +15,7 @@ public class Product {
   public Product() throws InvalidException {
     this.name = "default name";
     this.description = "description";
-    this.price = new Price(new BigDecimal(000.000));
+    this.price = new Price(new BigDecimal(000.000),  Currency.getInstance("INR"));
     this.stock = "none";
     this.id = 0L;
   }
