@@ -1,5 +1,6 @@
 package fr.victorianfashion.api.domain.Exchange;
 
+import fr.victorianfashion.api.domain.Delivery.Delivery;
 import fr.victorianfashion.api.domain.product.Product;
 import fr.victorianfashion.api.domain.user;
 import org.springframework.lang.Nullable;
@@ -15,6 +16,8 @@ public class Exchange {
     private Proposal approvedProposal;
     private Product makerOffer;
     private String state; // valid values : "open", "reserved", "shipped", "closed"
+    private Delivery approvedProposalDelivery;
+    private Delivery exchangeDelivery;
 
 
     public Exchange(user maker, Product makerOffer, String state) {
@@ -63,6 +66,13 @@ public class Exchange {
         this.makerOffer = makerOffer;
     }
 
+    public void setApprovedProposalDelivery(Delivery approvedProposalDelivery) {
+        this.approvedProposalDelivery = approvedProposalDelivery;
+    }
+
+    public void setExchangeDelivery(Delivery exchangeDelivery) {
+        this.exchangeDelivery = exchangeDelivery;
+    }
 
     public double getId() {
         return id;

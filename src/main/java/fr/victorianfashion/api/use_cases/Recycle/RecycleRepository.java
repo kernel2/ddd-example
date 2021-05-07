@@ -1,7 +1,7 @@
 package fr.victorianfashion.api.use_cases.Recycle;
 
-import fr.victorianfashion.api.domain.Recycle.Recycle;
+import fr.victorianfashion.api.domain.Recycle.Recycling;
 
 public interface RecycleRepository {
-    void save(Recycle recycle);
+    void save(Recycling recycle);
 }

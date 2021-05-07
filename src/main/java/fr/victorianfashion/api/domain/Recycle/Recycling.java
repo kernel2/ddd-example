@@ -6,24 +6,33 @@ import org.springframework.lang.Nullable;
 
 import java.util.List;
 
-public class Recycle {
-    private double id;
+public class Recycling {
+    private Long id;
     private user Giver;
     private List<Product> products;
+    private String state; // valid values : "created", "shipped", "received", "closed"
     @Nullable
     private Double reward;
+    private String deliveryReference;
 
-    public Recycle(user giver, List<Product> products, @Nullable Double reward) {
+
+    public Recycling(user giver, List<Product> products, @Nullable Double reward) {
         Giver = giver;
         this.products = products;
         this.reward = reward;
+    }
+
+    public Recycling(){}
+
+    public void addProduct(Product product){
+        this.products.add(product);
     }
 
     public double getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
